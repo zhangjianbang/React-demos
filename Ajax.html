@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>声明周期</title>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<script type="text/babel">
+		var Show = React.createClass({
+			getInitialState: function(){
+				return{
+					username:"",
+					lastGistUrl:""
+				};
+			},
+			componentDidMount: function(){
+				$.get(this.props.src,function(result){
+					var lastGist = result[0];
+					if(this.isMounted){
+						this.setState({
+							username: lastGist.owner.login,
+							lastGistUtl: lastGist.html_url
+						});
+					}
+				}.bind(this));
+			},
+			render: function(){
+				return(
+					<div>
+						<p>你的名字：{this.state.username}</p>
+						<a href={this.state.lastGistUrl}>地址</a>
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<Show src="https://api.github.com/users/octocat/gists"/>,
+			document.body
+		);
+	</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+   	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+  </head>
+  <body>   
+  <script type="text/babel">
+    {/*React.Children遍历子节点*/}
+  	var Main = React.createClass({
+  		render: function(){
+  			return (
+  				<ol>
+  					{
+  						React.Children.map(this.props.children,function(child){
+  							return <li>{child}</li>;
+  						})
+  					}
+  				</ol>
+  			);
+  		}
+  	});
+  	ReactDOM.render(
+ 		<Main>
+ 			<span>张建邦</span>
+ 			<span>66666</span>
+ 		</Main>,
+  		document.body
+  	);
+  </script>
+  </body>
+</html>

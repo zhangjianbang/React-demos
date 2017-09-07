@@ -1,0 +1,194 @@
+1. 引入React必须的js库
+	+ react.js（React的核心库）
+	+ react-dom.js（DOM相关的库）
+	+ babel.js（把ES6的代码转换为ES5代码，内嵌了对JSX的支持）
+
+2. 引入到HTML文档
+  	<body>
+    		<div id="example"></div>
+    		<script type="text/babel">
+      		// ** Our code goes here! **
+    		</script>
+  	</body>
+	+ type的属性为text/babel,因为JSX语法与JS不兼容
+
+2. ReactDOM.render()
+	+ 是React的最基本方法，用于把模板转换成HTML语言，并插入指定的DOM节点
+	ReactDOM.render(
+		<h1>你好</h1>,
+		document.getElementById('example')//不加;
+	);
+3. JSX语法
+	+ 允许HTML和JS混写
+	+ 遇到<>以HTML语法解析，遇到{}以JS语法解析
+	ReactDOM.render(
+		<h1>你好{3+3}</h1>,//你好6
+		document.getElementById('example')//不加;
+	);
+
+4. React组件
+	+ React允许将代码封装成组件（component），并像插入普通HTML标签一样在网页中插入组件。
+	+ React.createClass()方法用于创建组件
+
+	var Message = React.createClass({
+  		render: function(){
+  			return <h1>你好,{this.props.name}</h1>
+  		}
+  	});
+  	ReactDOM.render(
+ 		<Message name="张建邦"/>,
+  		document.getElementById('example')
+  	);
+	+ Message是一个组件类，模板插入<Message/>时会自动生成Message的一个实例。
+	+ 所有组件类必须有自己的render方法，用来输出组件。（组件类的实例称为组件）
+	+ 组件类的第一个字母要大写，组件类只能包含一个顶层标签，否则会报错。
+	+ 组件的用法和HTML一样，可加入任意属性。组件的属性可通过this.props对象获取。
+	+ 组件的class写成className，for写成htmlFor，因为class和for是js保留字。
+5. React.Children方法
+	+ this.props.children 表示组件的所有子节点
+	+ this.props.children有三个值，当前组件没有子节点->undefined；一个子节点->object；多个->array
+	+ React.Children.map();遍历子节点，传的是对象。
+	+ React.Children.map(this.props.children,function(child){});
+
+6.PropTypes方法
+	var MyTitle = React.createClass({
+		getDefaultProps: function(){
+			return {
+				title: "张建邦"
+			};
+		},
+  		propTypes: {
+    			title: React.PropTypes.string.isRequired,
+  		},
+  		render: function() {
+     			return <h1> {this.props.title} </h1>;
+   		}
+	});
+	ReactDOM.render(
+  		<MyTitle />,
+  		document.body
+	);
+	+ 组件的属性可以接受任意数据类型的值，组件类的PropTypes属性用来验证组件实例的属性是否符合要求
+	+ PropTypes内表示title属性是必须的，并其是字符串
+	+ getDefaultProps内给title设置默认值。
+
+7. 获取真实的DOM节点
+	+ 组件并不是真实的DOM节点，而是存在于内存中的一种数据结构，叫做虚拟DOM。只有把组件插入文档后，才会变成真实的DOM节点。所有DOM的变动，首先在虚拟DOM上发生，然后将实际发生变动的部分，反应到真实DOM上，这种算法交DOM diff，可以极大提高网页的性能。
+	+从组件中获得真实DOM需要用到“ref”属性。
+
+	var MyComponent = React.createClass({
+      		handle: function(){
+        			this.refs.id.focus();
+      		},
+      		render: function (){
+        			return(
+          				<div>
+            				<input type="text" ref="id"/>
+            				<button type="button" onClick={this.handle}>文本框焦点</button>
+          				</div>
+        			);
+      		}
+    	});
+    	ReactDOM.render(
+      		<MyComponent/>,
+      		document.body
+    	);
+	+ this.refs.[refName]属性获取的是真实DOM，所以必须等虚拟DOM插入文档后才能使用这个属性，否则会报错。
+	+ 上文通过click点击事件来触发回调函数，保证虚拟DOM插入文档后再操作。
+8. React状态（this.state）
+	+ React把组件看成一个状态机，一开始有初始状态，用户交互导致状态变化，从而重新渲染UI
+
+	var LikeButton = React.createClass({
+		getInitialState: function(){
+			return {like:false};
+		},
+		handleClick: function(){
+			this.setState({liked: !this.state.liked});
+		},
+		render: function(){
+			var text = this.state.liked ? '点击了' : '没有点击';
+			return(
+				<p onClick={this.handleClick}>
+					你 {text} 这段文本.
+				</p>
+			);
+		}
+	});
+	ReactDOM.render(
+		<LikeButton/>,
+		document.body
+	);
+	+ getInitialState方法用来定义初始化状态，也就是个对象，这个对象可以通过this.state属性获取。
+	+ 当用户点击text，导致状态变化，this.setState改变状态值，并自动调用render方法，重新渲染。
+	+ this.props和this.state都是用来描述组件的特征。this.props表示一旦定义，就不会发生改变。this.state表示会伴随用户交互而发生变化的特征。
+9. 表单
+	+ 用event.target.value获取表单的值
+	var Input = React.createClass({
+		getInitialState: function(){
+			return{value:'Hello!'};
+		},
+		inputClick: function(event){
+			this.setState({value:event.target.value});
+		},
+		render: function(){
+			var value = this.state.value;
+			return (
+				<div>
+					<input type="text" value={value} onChange={this.inputClick}/>
+					<p>{value}</p>
+				</div>
+			);
+		}
+	});
+	ReactDOM.render(
+		<Input/>,
+		document.body
+	);
+10. 组件声明周期
+组件三种状态:
+	1. Mounting:  已插入真实DOM
+	2. Updating： 正在被重新渲染
+	3. Unmounting： 已被移出真实DOM
+React为每种状态提供了两种处理函数，will函数在进入状态之前调用，did函数在进入状态之后调用。三种状态一共五种处理函数。
+	componentWillMount();
+	componentDidMounth();
+	componentWillUpdate(object nextPoros, object nextState);
+	componentDidUpdate(object prevPoros, object prevState);
+	componentWillUnmount();
+React提供了两种特殊状态处理函数：
+	componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
+	shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
+-------------------------------------------
+	var Hello = React.createClass({
+		getInitialState: function(){
+			return {
+				opacity:1.0
+			};
+		},
+		componentDidMount: function(){
+			this.timer = setInterval(function(){
+				var opacity = this.state.opacity;
+				opacity-=.05;
+				if(opacity<0.1){
+					opacity = 1.0;
+				}
+				this.setState({
+					opacity:opacity
+				});
+			}.bind(this),100);
+		},
+		render: function(){
+			return (
+				<div style={{opacity:this.state.opacity}}>
+					Hello {this.props.name}
+				</div>
+			);
+		}
+	});
+	ReactDOM.render(
+		<Hello name="word!"/>,
+		document.body
+	);
+	+上文在Hello组件加载完成后，通过componentDidMount方法设置一个定时器，每个100ms执行一次。每执行透明度变化，重新渲染UI
+11. Ajax操作
+	

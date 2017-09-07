@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>React表单</title>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+	<script type="text/babel">
+		var Input = React.createClass({
+			getInitialState: function(){
+				return{value:'Hello!'};
+			},
+			inputClick: function(event){
+				this.setState({value:event.target.value});
+			},
+			render: function(){
+				var value = this.state.value;
+				return (
+					<div>
+						<input type="text" value={value} onChange={this.inputClick}/>
+						<p>{value}</p>
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<Input/>,
+			document.body
+		);
+	</script>
+</body>
+</html>
