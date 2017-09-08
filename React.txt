@@ -1,4 +1,4 @@
--1. 引入React必须的js库
+1. 引入React必须的js库
 	+ react.js（React的核心库）
 	+ react-dom.js（DOM相关的库）
 	+ babel.js（把ES6的代码转换为ES5代码，内嵌了对JSX的支持）
