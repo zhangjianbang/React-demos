@@ -1,60 +1,60 @@
-1. ÒıÈëReact±ØĞëµÄjs¿â
-	+ react.js£¨ReactµÄºËĞÄ¿â£©
-	+ react-dom.js£¨DOMÏà¹ØµÄ¿â£©
-	+ babel.js£¨°ÑES6µÄ´úÂë×ª»»ÎªES5´úÂë£¬ÄÚÇ¶ÁË¶ÔJSXµÄÖ§³Ö£©
+-1. å¼•å…¥Reactå¿…é¡»çš„jsåº“
+	+ react.jsï¼ˆReactçš„æ ¸å¿ƒåº“ï¼‰
+	+ react-dom.jsï¼ˆDOMç›¸å…³çš„åº“ï¼‰
+	+ babel.jsï¼ˆæŠŠES6çš„ä»£ç è½¬æ¢ä¸ºES5ä»£ç ï¼Œå†…åµŒäº†å¯¹JSXçš„æ”¯æŒï¼‰
 
-2. ÒıÈëµ½HTMLÎÄµµ
+2. å¼•å…¥åˆ°HTMLæ–‡æ¡£
   	<body>
     		<div id="example"></div>
     		<script type="text/babel">
       		// ** Our code goes here! **
     		</script>
   	</body>
-	+ typeµÄÊôĞÔÎªtext/babel,ÒòÎªJSXÓï·¨ÓëJS²»¼æÈİ
+	+ typeçš„å±æ€§ä¸ºtext/babel,å› ä¸ºJSXè¯­æ³•ä¸JSä¸å…¼å®¹
 
 2. ReactDOM.render()
-	+ ÊÇReactµÄ×î»ù±¾·½·¨£¬ÓÃÓÚ°ÑÄ£°å×ª»»³ÉHTMLÓïÑÔ£¬²¢²åÈëÖ¸¶¨µÄDOM½Úµã
+	+ æ˜¯Reactçš„æœ€åŸºæœ¬æ–¹æ³•ï¼Œç”¨äºæŠŠæ¨¡æ¿è½¬æ¢æˆHTMLè¯­è¨€ï¼Œå¹¶æ’å…¥æŒ‡å®šçš„DOMèŠ‚ç‚¹
 	ReactDOM.render(
-		<h1>ÄãºÃ</h1>,
-		document.getElementById('example')//²»¼Ó;
+		<h1>ä½ å¥½</h1>,
+		document.getElementById('example')//ä¸åŠ ;
 	);
-3. JSXÓï·¨
-	+ ÔÊĞíHTMLºÍJS»ìĞ´
-	+ Óöµ½<>ÒÔHTMLÓï·¨½âÎö£¬Óöµ½{}ÒÔJSÓï·¨½âÎö
+3. JSXè¯­æ³•
+	+ å…è®¸HTMLå’ŒJSæ··å†™
+	+ é‡åˆ°<>ä»¥HTMLè¯­æ³•è§£æï¼Œé‡åˆ°{}ä»¥JSè¯­æ³•è§£æ
 	ReactDOM.render(
-		<h1>ÄãºÃ{3+3}</h1>,//ÄãºÃ6
-		document.getElementById('example')//²»¼Ó;
+		<h1>ä½ å¥½{3+3}</h1>,//ä½ å¥½6
+		document.getElementById('example')//ä¸åŠ ;
 	);
 
-4. React×é¼ş
-	+ ReactÔÊĞí½«´úÂë·â×°³É×é¼ş£¨component£©£¬²¢Ïñ²åÈëÆÕÍ¨HTML±êÇ©Ò»ÑùÔÚÍøÒ³ÖĞ²åÈë×é¼ş¡£
-	+ React.createClass()·½·¨ÓÃÓÚ´´½¨×é¼ş
+4. Reactç»„ä»¶
+	+ Reactå…è®¸å°†ä»£ç å°è£…æˆç»„ä»¶ï¼ˆcomponentï¼‰ï¼Œå¹¶åƒæ’å…¥æ™®é€šHTMLæ ‡ç­¾ä¸€æ ·åœ¨ç½‘é¡µä¸­æ’å…¥ç»„ä»¶ã€‚
+	+ React.createClass()æ–¹æ³•ç”¨äºåˆ›å»ºç»„ä»¶
 
 	var Message = React.createClass({
   		render: function(){
-  			return <h1>ÄãºÃ,{this.props.name}</h1>
+  			return <h1>ä½ å¥½,{this.props.name}</h1>
   		}
   	});
   	ReactDOM.render(
- 		<Message name="ÕÅ½¨°î"/>,
+ 		<Message name="å¼ å»ºé‚¦"/>,
   		document.getElementById('example')
   	);
-	+ MessageÊÇÒ»¸ö×é¼şÀà£¬Ä£°å²åÈë<Message/>Ê±»á×Ô¶¯Éú³ÉMessageµÄÒ»¸öÊµÀı¡£
-	+ ËùÓĞ×é¼şÀà±ØĞëÓĞ×Ô¼ºµÄrender·½·¨£¬ÓÃÀ´Êä³ö×é¼ş¡££¨×é¼şÀàµÄÊµÀı³ÆÎª×é¼ş£©
-	+ ×é¼şÀàµÄµÚÒ»¸ö×ÖÄ¸Òª´óĞ´£¬×é¼şÀàÖ»ÄÜ°üº¬Ò»¸ö¶¥²ã±êÇ©£¬·ñÔò»á±¨´í¡£
-	+ ×é¼şµÄÓÃ·¨ºÍHTMLÒ»Ñù£¬¿É¼ÓÈëÈÎÒâÊôĞÔ¡£×é¼şµÄÊôĞÔ¿ÉÍ¨¹ıthis.props¶ÔÏó»ñÈ¡¡£
-	+ ×é¼şµÄclassĞ´³ÉclassName£¬forĞ´³ÉhtmlFor£¬ÒòÎªclassºÍforÊÇjs±£Áô×Ö¡£
-5. React.Children·½·¨
-	+ this.props.children ±íÊ¾×é¼şµÄËùÓĞ×Ó½Úµã
-	+ this.props.childrenÓĞÈı¸öÖµ£¬µ±Ç°×é¼şÃ»ÓĞ×Ó½Úµã->undefined£»Ò»¸ö×Ó½Úµã->object£»¶à¸ö->array
-	+ React.Children.map();±éÀú×Ó½Úµã£¬´«µÄÊÇ¶ÔÏó¡£
+	+ Messageæ˜¯ä¸€ä¸ªç»„ä»¶ç±»ï¼Œæ¨¡æ¿æ’å…¥<Message/>æ—¶ä¼šè‡ªåŠ¨ç”ŸæˆMessageçš„ä¸€ä¸ªå®ä¾‹ã€‚
+	+ æ‰€æœ‰ç»„ä»¶ç±»å¿…é¡»æœ‰è‡ªå·±çš„renderæ–¹æ³•ï¼Œç”¨æ¥è¾“å‡ºç»„ä»¶ã€‚ï¼ˆç»„ä»¶ç±»çš„å®ä¾‹ç§°ä¸ºç»„ä»¶ï¼‰
+	+ ç»„ä»¶ç±»çš„ç¬¬ä¸€ä¸ªå­—æ¯è¦å¤§å†™ï¼Œç»„ä»¶ç±»åªèƒ½åŒ…å«ä¸€ä¸ªé¡¶å±‚æ ‡ç­¾ï¼Œå¦åˆ™ä¼šæŠ¥é”™ã€‚
+	+ ç»„ä»¶çš„ç”¨æ³•å’ŒHTMLä¸€æ ·ï¼Œå¯åŠ å…¥ä»»æ„å±æ€§ã€‚ç»„ä»¶çš„å±æ€§å¯é€šè¿‡this.propså¯¹è±¡è·å–ã€‚
+	+ ç»„ä»¶çš„classå†™æˆclassNameï¼Œforå†™æˆhtmlForï¼Œå› ä¸ºclasså’Œforæ˜¯jsä¿ç•™å­—ã€‚
+5. React.Childrenæ–¹æ³•
+	+ this.props.children è¡¨ç¤ºç»„ä»¶çš„æ‰€æœ‰å­èŠ‚ç‚¹
+	+ this.props.childrenæœ‰ä¸‰ä¸ªå€¼ï¼Œå½“å‰ç»„ä»¶æ²¡æœ‰å­èŠ‚ç‚¹->undefinedï¼›ä¸€ä¸ªå­èŠ‚ç‚¹->objectï¼›å¤šä¸ª->array
+	+ React.Children.map();éå†å­èŠ‚ç‚¹ï¼Œä¼ çš„æ˜¯å¯¹è±¡ã€‚
 	+ React.Children.map(this.props.children,function(child){});
 
-6.PropTypes·½·¨
+6.PropTypesæ–¹æ³•
 	var MyTitle = React.createClass({
 		getDefaultProps: function(){
 			return {
-				title: "ÕÅ½¨°î"
+				title: "å¼ å»ºé‚¦"
 			};
 		},
   		propTypes: {
@@ -68,13 +68,13 @@
   		<MyTitle />,
   		document.body
 	);
-	+ ×é¼şµÄÊôĞÔ¿ÉÒÔ½ÓÊÜÈÎÒâÊı¾İÀàĞÍµÄÖµ£¬×é¼şÀàµÄPropTypesÊôĞÔÓÃÀ´ÑéÖ¤×é¼şÊµÀıµÄÊôĞÔÊÇ·ñ·ûºÏÒªÇó
-	+ PropTypesÄÚ±íÊ¾titleÊôĞÔÊÇ±ØĞëµÄ£¬²¢ÆäÊÇ×Ö·û´®
-	+ getDefaultPropsÄÚ¸øtitleÉèÖÃÄ¬ÈÏÖµ¡£
+	+ ç»„ä»¶çš„å±æ€§å¯ä»¥æ¥å—ä»»æ„æ•°æ®ç±»å‹çš„å€¼ï¼Œç»„ä»¶ç±»çš„PropTypeså±æ€§ç”¨æ¥éªŒè¯ç»„ä»¶å®ä¾‹çš„å±æ€§æ˜¯å¦ç¬¦åˆè¦æ±‚
+	+ PropTypeså†…è¡¨ç¤ºtitleå±æ€§æ˜¯å¿…é¡»çš„ï¼Œå¹¶å…¶æ˜¯å­—ç¬¦ä¸²
+	+ getDefaultPropså†…ç»™titleè®¾ç½®é»˜è®¤å€¼ã€‚
 
-7. »ñÈ¡ÕæÊµµÄDOM½Úµã
-	+ ×é¼ş²¢²»ÊÇÕæÊµµÄDOM½Úµã£¬¶øÊÇ´æÔÚÓÚÄÚ´æÖĞµÄÒ»ÖÖÊı¾İ½á¹¹£¬½Ğ×öĞéÄâDOM¡£Ö»ÓĞ°Ñ×é¼ş²åÈëÎÄµµºó£¬²Å»á±ä³ÉÕæÊµµÄDOM½Úµã¡£ËùÓĞDOMµÄ±ä¶¯£¬Ê×ÏÈÔÚĞéÄâDOMÉÏ·¢Éú£¬È»ºó½«Êµ¼Ê·¢Éú±ä¶¯µÄ²¿·Ö£¬·´Ó¦µ½ÕæÊµDOMÉÏ£¬ÕâÖÖËã·¨½»DOM diff£¬¿ÉÒÔ¼«´óÌá¸ßÍøÒ³µÄĞÔÄÜ¡£
-	+´Ó×é¼şÖĞ»ñµÃÕæÊµDOMĞèÒªÓÃµ½¡°ref¡±ÊôĞÔ¡£
+7. è·å–çœŸå®çš„DOMèŠ‚ç‚¹
+	+ ç»„ä»¶å¹¶ä¸æ˜¯çœŸå®çš„DOMèŠ‚ç‚¹ï¼Œè€Œæ˜¯å­˜åœ¨äºå†…å­˜ä¸­çš„ä¸€ç§æ•°æ®ç»“æ„ï¼Œå«åšè™šæ‹ŸDOMã€‚åªæœ‰æŠŠç»„ä»¶æ’å…¥æ–‡æ¡£åï¼Œæ‰ä¼šå˜æˆçœŸå®çš„DOMèŠ‚ç‚¹ã€‚æ‰€æœ‰DOMçš„å˜åŠ¨ï¼Œé¦–å…ˆåœ¨è™šæ‹ŸDOMä¸Šå‘ç”Ÿï¼Œç„¶åå°†å®é™…å‘ç”Ÿå˜åŠ¨çš„éƒ¨åˆ†ï¼Œååº”åˆ°çœŸå®DOMä¸Šï¼Œè¿™ç§ç®—æ³•äº¤DOM diffï¼Œå¯ä»¥æå¤§æé«˜ç½‘é¡µçš„æ€§èƒ½ã€‚
+	+ä»ç»„ä»¶ä¸­è·å¾—çœŸå®DOMéœ€è¦ç”¨åˆ°â€œrefâ€å±æ€§ã€‚
 
 	var MyComponent = React.createClass({
       		handle: function(){
@@ -84,7 +84,7 @@
         			return(
           				<div>
             				<input type="text" ref="id"/>
-            				<button type="button" onClick={this.handle}>ÎÄ±¾¿ò½¹µã</button>
+            				<button type="button" onClick={this.handle}>æ–‡æœ¬æ¡†ç„¦ç‚¹</button>
           				</div>
         			);
       		}
@@ -93,10 +93,10 @@
       		<MyComponent/>,
       		document.body
     	);
-	+ this.refs.[refName]ÊôĞÔ»ñÈ¡µÄÊÇÕæÊµDOM£¬ËùÒÔ±ØĞëµÈĞéÄâDOM²åÈëÎÄµµºó²ÅÄÜÊ¹ÓÃÕâ¸öÊôĞÔ£¬·ñÔò»á±¨´í¡£
-	+ ÉÏÎÄÍ¨¹ıclickµã»÷ÊÂ¼şÀ´´¥·¢»Øµ÷º¯Êı£¬±£Ö¤ĞéÄâDOM²åÈëÎÄµµºóÔÙ²Ù×÷¡£
-8. React×´Ì¬£¨this.state£©
-	+ React°Ñ×é¼ş¿´³ÉÒ»¸ö×´Ì¬»ú£¬Ò»¿ªÊ¼ÓĞ³õÊ¼×´Ì¬£¬ÓÃ»§½»»¥µ¼ÖÂ×´Ì¬±ä»¯£¬´Ó¶øÖØĞÂäÖÈ¾UI
+	+ this.refs.[refName]å±æ€§è·å–çš„æ˜¯çœŸå®DOMï¼Œæ‰€ä»¥å¿…é¡»ç­‰è™šæ‹ŸDOMæ’å…¥æ–‡æ¡£åæ‰èƒ½ä½¿ç”¨è¿™ä¸ªå±æ€§ï¼Œå¦åˆ™ä¼šæŠ¥é”™ã€‚
+	+ ä¸Šæ–‡é€šè¿‡clickç‚¹å‡»äº‹ä»¶æ¥è§¦å‘å›è°ƒå‡½æ•°ï¼Œä¿è¯è™šæ‹ŸDOMæ’å…¥æ–‡æ¡£åå†æ“ä½œã€‚
+8. ReactçŠ¶æ€ï¼ˆthis.stateï¼‰
+	+ ReactæŠŠç»„ä»¶çœ‹æˆä¸€ä¸ªçŠ¶æ€æœºï¼Œä¸€å¼€å§‹æœ‰åˆå§‹çŠ¶æ€ï¼Œç”¨æˆ·äº¤äº’å¯¼è‡´çŠ¶æ€å˜åŒ–ï¼Œä»è€Œé‡æ–°æ¸²æŸ“UI
 
 	var LikeButton = React.createClass({
 		getInitialState: function(){
@@ -106,10 +106,10 @@
 			this.setState({liked: !this.state.liked});
 		},
 		render: function(){
-			var text = this.state.liked ? 'µã»÷ÁË' : 'Ã»ÓĞµã»÷';
+			var text = this.state.liked ? 'ç‚¹å‡»äº†' : 'æ²¡æœ‰ç‚¹å‡»';
 			return(
 				<p onClick={this.handleClick}>
-					Äã {text} Õâ¶ÎÎÄ±¾.
+					ä½  {text} è¿™æ®µæ–‡æœ¬.
 				</p>
 			);
 		}
@@ -118,11 +118,11 @@
 		<LikeButton/>,
 		document.body
 	);
-	+ getInitialState·½·¨ÓÃÀ´¶¨Òå³õÊ¼»¯×´Ì¬£¬Ò²¾ÍÊÇ¸ö¶ÔÏó£¬Õâ¸ö¶ÔÏó¿ÉÒÔÍ¨¹ıthis.stateÊôĞÔ»ñÈ¡¡£
-	+ µ±ÓÃ»§µã»÷text£¬µ¼ÖÂ×´Ì¬±ä»¯£¬this.setState¸Ä±ä×´Ì¬Öµ£¬²¢×Ô¶¯µ÷ÓÃrender·½·¨£¬ÖØĞÂäÖÈ¾¡£
-	+ this.propsºÍthis.state¶¼ÊÇÓÃÀ´ÃèÊö×é¼şµÄÌØÕ÷¡£this.props±íÊ¾Ò»µ©¶¨Òå£¬¾Í²»»á·¢Éú¸Ä±ä¡£this.state±íÊ¾»á°éËæÓÃ»§½»»¥¶ø·¢Éú±ä»¯µÄÌØÕ÷¡£
-9. ±íµ¥
-	+ ÓÃevent.target.value»ñÈ¡±íµ¥µÄÖµ
+	+ getInitialStateæ–¹æ³•ç”¨æ¥å®šä¹‰åˆå§‹åŒ–çŠ¶æ€ï¼Œä¹Ÿå°±æ˜¯ä¸ªå¯¹è±¡ï¼Œè¿™ä¸ªå¯¹è±¡å¯ä»¥é€šè¿‡this.stateå±æ€§è·å–ã€‚
+	+ å½“ç”¨æˆ·ç‚¹å‡»textï¼Œå¯¼è‡´çŠ¶æ€å˜åŒ–ï¼Œthis.setStateæ”¹å˜çŠ¶æ€å€¼ï¼Œå¹¶è‡ªåŠ¨è°ƒç”¨renderæ–¹æ³•ï¼Œé‡æ–°æ¸²æŸ“ã€‚
+	+ this.propså’Œthis.stateéƒ½æ˜¯ç”¨æ¥æè¿°ç»„ä»¶çš„ç‰¹å¾ã€‚this.propsè¡¨ç¤ºä¸€æ—¦å®šä¹‰ï¼Œå°±ä¸ä¼šå‘ç”Ÿæ”¹å˜ã€‚this.stateè¡¨ç¤ºä¼šä¼´éšç”¨æˆ·äº¤äº’è€Œå‘ç”Ÿå˜åŒ–çš„ç‰¹å¾ã€‚
+9. è¡¨å•
+	+ ç”¨event.target.valueè·å–è¡¨å•çš„å€¼
 	var Input = React.createClass({
 		getInitialState: function(){
 			return{value:'Hello!'};
@@ -144,20 +144,20 @@
 		<Input/>,
 		document.body
 	);
-10. ×é¼şÉùÃ÷ÖÜÆÚ
-×é¼şÈıÖÖ×´Ì¬:
-	1. Mounting:  ÒÑ²åÈëÕæÊµDOM
-	2. Updating£º ÕıÔÚ±»ÖØĞÂäÖÈ¾
-	3. Unmounting£º ÒÑ±»ÒÆ³öÕæÊµDOM
-ReactÎªÃ¿ÖÖ×´Ì¬Ìá¹©ÁËÁ½ÖÖ´¦Àíº¯Êı£¬willº¯ÊıÔÚ½øÈë×´Ì¬Ö®Ç°µ÷ÓÃ£¬didº¯ÊıÔÚ½øÈë×´Ì¬Ö®ºóµ÷ÓÃ¡£ÈıÖÖ×´Ì¬Ò»¹²ÎåÖÖ´¦Àíº¯Êı¡£
+10. ç»„ä»¶å£°æ˜å‘¨æœŸ
+ç»„ä»¶ä¸‰ç§çŠ¶æ€:
+	1. Mounting:  å·²æ’å…¥çœŸå®DOM
+	2. Updatingï¼š æ­£åœ¨è¢«é‡æ–°æ¸²æŸ“
+	3. Unmountingï¼š å·²è¢«ç§»å‡ºçœŸå®DOM
+Reactä¸ºæ¯ç§çŠ¶æ€æä¾›äº†ä¸¤ç§å¤„ç†å‡½æ•°ï¼Œwillå‡½æ•°åœ¨è¿›å…¥çŠ¶æ€ä¹‹å‰è°ƒç”¨ï¼Œdidå‡½æ•°åœ¨è¿›å…¥çŠ¶æ€ä¹‹åè°ƒç”¨ã€‚ä¸‰ç§çŠ¶æ€ä¸€å…±äº”ç§å¤„ç†å‡½æ•°ã€‚
 	componentWillMount();
 	componentDidMounth();
 	componentWillUpdate(object nextPoros, object nextState);
 	componentDidUpdate(object prevPoros, object prevState);
 	componentWillUnmount();
-ReactÌá¹©ÁËÁ½ÖÖÌØÊâ×´Ì¬´¦Àíº¯Êı£º
-	componentWillReceiveProps(object nextProps)£ºÒÑ¼ÓÔØ×é¼şÊÕµ½ĞÂµÄ²ÎÊıÊ±µ÷ÓÃ
-	shouldComponentUpdate(object nextProps, object nextState)£º×é¼şÅĞ¶ÏÊÇ·ñÖØĞÂäÖÈ¾Ê±µ÷ÓÃ
+Reactæä¾›äº†ä¸¤ç§ç‰¹æ®ŠçŠ¶æ€å¤„ç†å‡½æ•°ï¼š
+	componentWillReceiveProps(object nextProps)ï¼šå·²åŠ è½½ç»„ä»¶æ”¶åˆ°æ–°çš„å‚æ•°æ—¶è°ƒç”¨
+	shouldComponentUpdate(object nextProps, object nextState)ï¼šç»„ä»¶åˆ¤æ–­æ˜¯å¦é‡æ–°æ¸²æŸ“æ—¶è°ƒç”¨
 -------------------------------------------
 	var Hello = React.createClass({
 		getInitialState: function(){
@@ -189,6 +189,6 @@ ReactÌá¹©ÁËÁ½ÖÖÌØÊâ×´Ì¬´¦Àíº¯Êı£º
 		<Hello name="word!"/>,
 		document.body
 	);
-	+ÉÏÎÄÔÚHello×é¼ş¼ÓÔØÍê³Éºó£¬Í¨¹ıcomponentDidMount·½·¨ÉèÖÃÒ»¸ö¶¨Ê±Æ÷£¬Ã¿¸ö100msÖ´ĞĞÒ»´Î¡£Ã¿Ö´ĞĞÍ¸Ã÷¶È±ä»¯£¬ÖØĞÂäÖÈ¾UI
-11. Ajax²Ù×÷
+	+ä¸Šæ–‡åœ¨Helloç»„ä»¶åŠ è½½å®Œæˆåï¼Œé€šè¿‡componentDidMountæ–¹æ³•è®¾ç½®ä¸€ä¸ªå®šæ—¶å™¨ï¼Œæ¯ä¸ª100msæ‰§è¡Œä¸€æ¬¡ã€‚æ¯æ‰§è¡Œé€æ˜åº¦å˜åŒ–ï¼Œé‡æ–°æ¸²æŸ“UI
+11. Ajaxæ“ä½œ
 	
